@@ -32,6 +32,17 @@ def prize_row(name: str, points: str, desc: str) -> rx.Component:
         border_bottom="1px dashed var(--gray-5)",
     )
 
+def shop_category(emoji: str, label: str) -> rx.Component:
+    return rx.hstack(
+        rx.text(emoji, size="5"),
+        rx.text(label, weight="bold", size="3"),
+        spacing="2",
+        align="center",
+        padding="12px 18px",
+        border="1.5px solid var(--gray-5)",
+        border_radius="10px",
+        background="var(--gray-1)",
+    )
 
 def example_chip(closed: str, open_alt: str) -> rx.Component:
     return rx.hstack(
@@ -159,11 +170,11 @@ def index() -> rx.Component:
                 section_title("What's the deal?"),
                 rx.box(
                     rx.text(
-                        "Knockoff is a a ",
+                        "Knockoff is a ",
                         rx.text.strong("You Ship, We Ship"),
                         " program. You build something cool -> we give you cool stuff. "
-                        "Specifically: pick any closed-souce product (Notion, Figma, Discord, whatever). ",
-                        "Build a legit open-souce alternative that people can actually use and self-host "
+                        "Specifically: pick any closed-source product (Notion, Figma, Discord, whatever). ",
+                        "Build a legit open-source alternative that people can actually use and self-host "
                         "and earn points you can spend in our prize shop.",
                         size="3",
                         line_height="1.7"
@@ -190,7 +201,7 @@ def index() -> rx.Component:
             ),
 
             rx.vstack(
-                section_title("Points system", "code more → earn more → get more free stuff."),
+                section_title("⭐ Points system", "code more → earn more → get more free stuff."),
                 rx.box(
                     rx.vstack(
                         rx.hstack(
@@ -198,9 +209,8 @@ def index() -> rx.Component:
                             rx.vstack(
                                 rx.text("10 points per hour of coding", weight="bold", size="4"),
                                 rx.text(
-                                    "Tracked via Hackatime or Lapse. Just code - we'll count the time.",
-                                    color="gray",
-                                    size="2"
+                                    "Tracked via Hackatime and Lapse. Just code — we'll count the time.",
+                                    color="gray", size="2",
                                 ),
                                 spacing="1",
                                 align="start",
@@ -210,53 +220,85 @@ def index() -> rx.Component:
                             width="100%",
                         ),
                         rx.divider(),
-                        rx.text("🎯 Bonus point tasks", weight="bold", size="3"),
-                        rx.vstack(
-                            rx.text("• Write real documentation → +50 pts", size="2", color="gray"),
-                            rx.text("• Add Docker / one-click deploy → +75 pts", size="2", color="gray"),
-                            rx.text("• Get 5+ GitHub stars → +100 pts", size="2", color="gray"),
-                            rx.text("• Record a demo video → +50 pts", size="2", color="gray"),
-                            rx.text("• Get someone else to self-host it → +150 pts", size="2", color="gray"),
-                            spacing="2",
-                            align="start",
-                            width="100%"
+                        rx.hstack(
+                            rx.text("🎯", size="6"),
+                            rx.vstack(
+                                rx.text("Bonus tasks", weight="bold", size="4"),
+                                rx.text(
+                                    "Earn extra points for things like writing docs, adding Docker support, getting GitHub stars, and more.",
+                                    color="gray", size="2",
+                                ),
+                                spacing="1",
+                                align="start",
+                            ),
+                            spacing="3",
+                            align="center",
+                            width="100%",
+                        ),
+                        rx.divider(),
+                        rx.hstack(
+                            rx.text("⚡", size="6"),
+                            rx.vstack(
+                                rx.text("Quick-time events", weight="bold", size="4"),
+                                rx.text(
+                                    "Random pop-up challenges — like \"add a config file\" or \"write a test\" — for instant bonus points. Stay ready and watch #knockoff closely!",
+                                    color="gray", size="2",
+                                ),
+                                spacing="1",
+                                align="start",
+                            ),
+                            spacing="3",
+                            align="center",
+                            width="100%",
                         ),
                         spacing="3",
                         align="start",
-                        width="100%"
+                        width="100%",
                     ),
                     padding="24px",
                     border_radius="16px",
                     border="2px solid var(--purple-6)",
                     background="var(--purple-2)",
                     box_shadow="4px 4px 0px var(--purple-7)",
-                    width="100%"
+                    width="100%",
+                ),
+                rx.link(
+                    rx.button(
+                        "See all tasks & point values →",
+                        size="3",
+                        variant="outline",
+                        color_scheme="purple",
+                        cursor="pointer",
+                    ),
+                    href="/tasks",
                 ),
                 spacing="4",
-                width="100%"
+                width="100%",
             ),
 
             rx.vstack(
-                section_title("🛒 Prize shop", "spend your points on real stuff."),
-                rx.box(
-                    rx.vstack(
-                        prize_row("Hack Club stickers", "10 pts", "Custom-made Knockoff and random Hack Club stickers."),
-                        prize_row("Custom Knockoff T-Shirt", "150 pts", "A shirt only for certified Shippers."),
-                        prize_row("$10 Domain + Hosting credits", "15 points", "Get your knockoff online for real."),
-                        prize_row("Raspberry Pi 5", "100 pts", "Self-host on actual hardware."),
-                        prize_row("Dev Tools (IDE / AI subs)", "500 pts", "Level up your workflow."),
-                        prize_row("Laptop Grant", "1500 pts", "The big one. Ship hard, earn big."),
-                        spacing="1",
-                        width="100%"
+                section_title("🛒 Prize shop", "earn points, spend 'em on real stuff."),
+                rx.flex(
+                    shop_category("🎨", "Swag & stickers"),
+                    shop_category("🌐", "Domains & hosting"),
+                    shop_category("🔧", "Dev tools & subscriptions"),
+                    shop_category("🖥️", "Hardware"),
+                    wrap="wrap",
+                    spacing="3",
+                    width="100%",
+                ),
+                rx.link(
+                    rx.button(
+                        "Browse the full shop →",
+                        size="3",
+                        variant="outline",
+                        color_scheme="purple",
+                        cursor="pointer",
                     ),
-                    padding="20px",
-                    border_radius="16px",
-                    border="2px solid var(--gray-6)",
-                    background="var(--gray-1)",
-                    width="100%"
+                    href="/shop",
                 ),
                 spacing="4",
-                width="100%"
+                width="100%",
             ),
 
             rx.vstack(
@@ -344,12 +386,22 @@ def index() -> rx.Component:
                     rx.hstack(
                         rx.text("🏴‍☠️ Knockoff", weight="bold", size="3"),
                         rx.text("·", color="gray"),
-                        rx.text("a Hack Club YSWS", size="2", color="gray"),
+                        rx.link(
+                            rx.text("Hack Club", size="2", color="var(--purple-9)", weight="medium"),
+                            href="https://hackclub.com",
+                            is_external=True,
+                        ),
+                        rx.text("·", color="gray"),
+                        rx.link(
+                            rx.text("Join the Slack", size="2", color="var(--purple-9)", weight="medium"),
+                            href="https://hackclub.com/slack",
+                            is_external=True,
+                        ),
                         spacing="2",
                         align="center",
                     ),
                     rx.text(
-                        "Made with 🖤 and questionable amounts of caffeine.",
+                        "Made with 🖤 and questionable amounts of caffeine by ketr4x.",
                         size="1",
                         color="gray",
                     ),
