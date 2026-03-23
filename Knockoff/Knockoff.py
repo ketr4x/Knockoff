@@ -864,7 +864,11 @@ def index() -> rx.Component:
     )
 
 
-app = rx.App()
+app = rx.App(
+    theme=rx.theme(
+        accent_color="purple",
+    )
+)
 app.add_page(index, title="Knockoff")
 app.add_page(shop, route="/shop", title="Knockoff — Prize Shop")
 app.add_page(tasks, route="/tasks", title="Knockoff — Tasks & Points")
