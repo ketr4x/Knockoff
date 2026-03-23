@@ -23,10 +23,11 @@ def prize_row(name: str, points: str, desc: str) -> rx.Component:
             rx.text(name, weight="bold", size="3"),
             rx.text(desc, color="gray", size="2"),
             spacing="1",
-            align="start"
+            align="start",
+            width="100%",
         ),
         spacing="3",
-        align="center",
+        align="start",
         width="100%",
         padding="12px 0",
         border_bottom="1px dashed var(--gray-5)",
@@ -42,6 +43,70 @@ def shop_category(emoji: str, label: str) -> rx.Component:
         border="1.5px solid var(--gray-5)",
         border_radius="10px",
         background="var(--gray-1)",
+    )
+
+
+def shop_note(text: str) -> rx.Component:
+    return rx.box(
+        rx.text(text, size="2", weight="medium", color="var(--purple-9)"),
+        padding="6px 12px",
+        border_radius="999px",
+        background="var(--purple-3)",
+        border="1.5px solid var(--purple-6)",
+    )
+
+
+def shop_section_card(emoji: str, title: str, desc: str, *items: rx.Component) -> rx.Component:
+    return rx.box(
+        rx.vstack(
+            rx.hstack(
+                rx.text(emoji, size="6"),
+                rx.vstack(
+                    rx.text(title, weight="bold", size="5"),
+                    rx.text(desc, color="gray", size="2"),
+                    spacing="1",
+                    align="start",
+                    width="100%",
+                ),
+                spacing="3",
+                align="start",
+                width="100%",
+            ),
+            rx.vstack(
+                *items,
+                spacing="1",
+                width="100%",
+            ),
+            spacing="4",
+            align="start",
+            width="100%",
+        ),
+        padding="22px",
+        border="1.5px solid var(--gray-5)",
+        border_radius="18px",
+        background="linear-gradient(180deg, var(--gray-1), var(--gray-2))",
+        box_shadow="4px 4px 0px var(--gray-4)",
+        width="100%",
+        height="100%",
+    )
+
+
+def coming_soon_card(title: str, desc: str) -> rx.Component:
+    return rx.box(
+        rx.vstack(
+            rx.text("Coming soon", size="1", weight="bold", color="var(--purple-9)", letter_spacing="0.08em"),
+            rx.text(title, weight="bold", size="4"),
+            rx.text(desc, color="gray", size="2", line_height="1.6"),
+            spacing="2",
+            align="start",
+            width="100%",
+        ),
+        padding="18px",
+        border="1.5px dashed var(--purple-6)",
+        border_radius="16px",
+        background="var(--purple-2)",
+        width="100%",
+        height="100%",
     )
 
 def example_chip(closed: str, open_alt: str) -> rx.Component:
@@ -116,7 +181,7 @@ def shop() -> rx.Component:
             rx.box(
                 rx.text(
                     "We price from the real cost to ship each reward: item + shipping + tax + fees. "
-                    "Cheap rewards should be reachable early; bigger hardware takes real time.",
+                    "Cheap rewards should be reachable early; bigger hardware takes real time. ",
                     size="2",
                     color="gray",
                     line_height="1.6",
@@ -128,53 +193,84 @@ def shop() -> rx.Component:
                 width="100%",
             ),
             rx.grid(
-                rx.vstack(
-                    rx.text("🎨 Swag & Stickers", weight="bold", size="5"),
-                    rx.vstack(
-                        prize_row("Knockoff Sticker Pack", "30 pts", "Custom-made Knockoff stickers + random Hack Club classics."),
-                        prize_row("Custom Knockoff T-Shirt", "105 pts", "A shirt only for certified shippers."),
-                        prize_row("Hoodie", "165 pts", "For late-night coding sessions."),
-                        spacing="1", width="100%",
-                    ),
-                    spacing="3", width="100%",
+                shop_section_card(
+                    "🎨",
+                    "Swag & Stickers",
+                    "Soft goods and small flexes you can grab early.",
+                    prize_row("Knockoff Sticker Pack", "30 pts", "Custom-made Knockoff stickers + random Hack Club classics."),
+                    prize_row("Custom Knockoff T-Shirt", "105 pts", "A shirt only for certified shippers."),
+                    prize_row("Hoodie", "165 pts", "For late-night coding sessions."),
                 ),
-                rx.vstack(
-                    rx.text("🌐 Domains & Hosting", weight="bold", size="5"),
-                    rx.vstack(
-                        prize_row("Domain name", "30 pts", "A standard project domain for your knockoff."),
-                        prize_row("Hosting credits", "75 pts", "Cloud credits to keep your knockoff running."),
-                        prize_row("Domain + hosting bundle", "105 pts", "A domain plus starter hosting credit."),
-                        spacing="1", width="100%",
-                    ),
-                    spacing="3", width="100%",
+                shop_section_card(
+                    "🌐",
+                    "Domains & Hosting",
+                    "Help for getting your project live and keeping it there.",
+                    prize_row("Domain name", "30 pts", "A standard project domain for your knockoff."),
+                    prize_row("Hosting credits", "75 pts", "Cloud credits to keep your knockoff running."),
+                    prize_row("Domain + hosting bundle", "105 pts", "A domain plus starter hosting credit."),
                 ),
-                rx.vstack(
-                    rx.text("🔧 Dev Tools & Subscriptions", weight="bold", size="5"),
-                    rx.vstack(
-                        prize_row("IDE subscription", "90 pts", "One month of JetBrains or a similar paid editor tool."),
-                        prize_row("AI coding tools", "60 pts", "One month of Copilot, Cursor, or similar."),
-                        prize_row("Dev tools bundle", "150 pts", "IDE + AI combo."),
-                        spacing="1", width="100%",
-                    ),
-                    spacing="3", width="100%",
+                shop_section_card(
+                    "🔧",
+                    "Dev Tools & Subscriptions",
+                    "Short bursts of paid tools that make shipping easier.",
+                    prize_row("IDE subscription", "90 pts", "One month of JetBrains or a similar paid editor tool."),
+                    prize_row("AI coding tools", "60 pts", "One month of Copilot, Cursor, or similar."),
+                    prize_row("Dev tools bundle", "150 pts", "IDE + AI combo."),
                 ),
-                rx.vstack(
-                    rx.text("🖥️ Hardware", weight="bold", size="5"),
-                    rx.vstack(
-                        prize_row("Raspberry Pi bundle", "240 pts", "Self-host your knockoff on real hardware."),
-                        prize_row("Mini PC", "450 pts", "A proper home server."),
-                        prize_row("$100 Laptop grant", "300 pts", "?"),
-                        spacing="1", width="100%",
-                    ),
-                    spacing="3", width="100%",
+                shop_section_card(
+                    "🖥️",
+                    "Hardware",
+                    "Longer-term rewards for builders who really stack points.",
+                    prize_row("Raspberry Pi bundle", "240 pts", "Self-host your knockoff on real hardware."),
+                    prize_row("Mini PC", "450 pts", "A proper home server."),
+                    prize_row("$100 Laptop grant", "300 pts", "Put points toward a refurb laptop or a practical upgrade."),
                 ),
                 columns=rx.breakpoints(initial="1", md="2"),
                 spacing="7",
                 width="100%",
             ),
             rx.box(
+                rx.vstack(
+                    rx.hstack(
+                        rx.text("⏳", size="6"),
+                        rx.vstack(
+                            rx.text("More rewards are coming soon", weight="bold", size="5"),
+                            rx.text(
+                                "The shop will keep expanding in small batches as pricing gets locked. "
+                                "Expect restocks, limited drops, and a few bigger-ticket items over time.",
+                                size="2",
+                                color="gray",
+                                line_height="1.6",
+                            ),
+                            spacing="1",
+                            align="start",
+                            width="100%",
+                        ),
+                        spacing="3",
+                        align="start",
+                        width="100%",
+                    ),
+                    rx.grid(
+                        coming_soon_card("Limited merch drops", "Seasonal shirts, one-off prints, and small batches that rotate in without replacing the core shop."),
+                        coming_soon_card("More build credits", "Extra infra and software support for projects that need domains, hosting, or paid tools to stay online."),
+                        coming_soon_card("Bigger hardware", "Higher-cost rewards will show up as stock and shipping math become predictable enough to price fairly."),
+                        columns=rx.breakpoints(initial="1", md="3"),
+                        spacing="4",
+                        width="100%",
+                    ),
+                    spacing="4",
+                    align="start",
+                    width="100%",
+                ),
+                padding="24px",
+                border="1.5px solid var(--purple-6)",
+                border_radius="20px",
+                background="linear-gradient(180deg, var(--purple-2), var(--gray-1))",
+                width="100%",
+            ),
+            rx.box(
                 rx.text(
-                    "Point values and availability may change. High-cost hardware may be limited or require manual approval.",
+                    "Point values and availability may change. New rewards will roll in over time, and high-cost hardware may be limited or require manual approval.",
                     size="2", color="gray", font_style="italic",
                 ),
                 padding_top="12px",
@@ -583,6 +679,31 @@ def index() -> rx.Component:
                         shop_category("🖥️", "Hardware"),
                         wrap="wrap",
                         spacing="3",
+                        width="100%",
+                    ),
+                    rx.box(
+                        rx.hstack(
+                            rx.text("⏳", size="5"),
+                            rx.vstack(
+                                rx.text("More items are on deck", weight="bold", size="3"),
+                                rx.text(
+                                    "The current catalog is just the base layer. Expect restocks, limited drops, and more hardware once pricing lands.",
+                                    color="gray",
+                                    size="2",
+                                    line_height="1.6",
+                                ),
+                                spacing="1",
+                                align="start",
+                                width="100%",
+                            ),
+                            spacing="3",
+                            align="start",
+                            width="100%",
+                        ),
+                        padding="18px",
+                        border_radius="14px",
+                        border="1.5px solid var(--gray-5)",
+                        background="var(--gray-2)",
                         width="100%",
                     ),
                     rx.link(
