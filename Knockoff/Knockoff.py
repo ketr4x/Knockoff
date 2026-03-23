@@ -162,6 +162,7 @@ def faq_item(question: str, answer: str) -> rx.Component:
 
 def shop() -> rx.Component:
     return rx.container(
+        rx.color_mode.button(position="top-right"),
         rx.vstack(
             rx.link(
                 rx.text("← Back to Knockoff", size="2", color="var(--purple-9)", weight="medium"),
@@ -181,7 +182,7 @@ def shop() -> rx.Component:
             rx.box(
                 rx.text(
                     "We price from the real cost to ship each reward: item + shipping + tax + fees. "
-                    "Cheap rewards should be reachable early; bigger hardware takes real time. ",
+                    "Cheap rewards should be reachable early; bigger hardware takes real time.",
                     size="2",
                     color="gray",
                     line_height="1.6",
@@ -236,7 +237,7 @@ def shop() -> rx.Component:
                         rx.vstack(
                             rx.text("More rewards are coming soon", weight="bold", size="5"),
                             rx.text(
-                                "The shop will keep expanding in small batches as pricing gets locked. "
+                                "The shop will keep expanding in small batches as pricing gets finalized. "
                                 "Expect restocks, limited drops, and a few bigger-ticket items over time.",
                                 size="2",
                                 color="gray",
@@ -338,7 +339,7 @@ def tasks() -> rx.Component:
             rx.vstack(
                 rx.heading("🎯 Tasks & Points", size="9", weight="bold"),
                 rx.text(
-                    "Everything that earns you points. Coding is the base rate; tasks and quick-time events are bonus layers.",
+                    "Everything that earns you points. Coding is the base rate, while tasks and quick-time events are bonus layers.",
                     size="4", color="gray",
                 ),
                 spacing="2",
@@ -376,7 +377,7 @@ def tasks() -> rx.Component:
                                 "Catch them in the Slack or on the dashboard for a small burst of bonus points.",
                                 color="gray", size="2", line_height="1.6",
                             ),
-                            rx.text("Examples of past QTEs:", weight="bold", size="2", padding_top="8px"),
+                            rx.text("Examples of QTEs:", weight="bold", size="2", padding_top="8px"),
                             rx.flex(
                                 qte_chip("Add a config file", "+5 pts"),
                                 qte_chip("Write one test", "+10 pts"),
@@ -406,7 +407,9 @@ def tasks() -> rx.Component:
             rx.vstack(
                 rx.text("📋 Bonus Tasks", weight="bold", size="5"),
                 rx.text(
-                    "Tasks are meant to add roughly 25% on top of coding time overall. They reward polish and distribution, but they should not beat just shipping code.",
+                    "Tasks are meant to add roughly 25% on top of coding time overall. "
+                    "They reward polish and distribution, but they should not beat just shipping code. "
+                    "Task points are capped at 30% of your coding points.",
                     size="2",
                     color="gray",
                     line_height="1.6",
@@ -561,9 +564,9 @@ def index() -> rx.Component:
                         rx.text(
                             "Knockoff is a ",
                             rx.text.strong("You Ship, We Ship"),
-                            " program. You build something cool → we give you cool stuff. "
+                            " program. You build something real; we help you keep building. "
                             "Specifically: pick any closed-source product (Notion, Figma, Discord, whatever). ",
-                            "Build a legit open-source alternative that people can actually use and self-host "
+                            "Build a legit open-source alternative that people can actually use and self-host, "
                             "and earn points you can spend in our prize shop.",
                             size="3",
                             line_height="1.7"
@@ -577,8 +580,8 @@ def index() -> rx.Component:
                 rx.vstack(
                     section_title("Ground Rules", "small constraints so everyone ships"),
                     rx.grid(
-                        rule_card("🏠", "Self-hostable", "Anyone should be able to clone and run it themselves. Docker, one-liner, whatever - it needs to be easy"),
-                        rule_card("✅", "Actually works", "Functional, Deployed and demo-able. No vaporware."),
+                        rule_card("🏠", "Self-hostable", "Anyone should be able to clone and run it themselves. Docker, a one-liner, whatever - it needs to be easy."),
+                        rule_card("✅", "Actually works", "Functional, deployed, and demoable. No vaporware."),
                         rule_card("⏰", "30 days", "One month from start to submission. Ship fast."),
                         rule_card("🔓", "Open-source twin", "Your project must be inspired by an existing closed-source product."),
                         columns=rx.breakpoints(initial="1", sm="2"),
@@ -620,7 +623,7 @@ def index() -> rx.Component:
                                 rx.vstack(
                                     rx.text("Bonus tasks", weight="bold", size="4"),
                                     rx.text(
-                                        "Earn extra points for things like writing docs, adding Docker support, and getting your project used.",
+                                        "Earn extra points for things like writing docs, adding Docker support, and getting your project used. Bonus points are capped at 30% of your coding points.",
                                         color="gray", size="2",
                                     ),
                                     spacing="1",
@@ -687,7 +690,7 @@ def index() -> rx.Component:
                             rx.vstack(
                                 rx.text("More items are on deck", weight="bold", size="3"),
                                 rx.text(
-                                    "The current catalog is just the base layer. Expect restocks, limited drops, and more hardware once pricing lands.",
+                                    "The current catalog is just the base layer. Expect restocks, limited drops, and more hardware once pricing settles.",
                                     color="gray",
                                     size="2",
                                     line_height="1.6",
@@ -725,7 +728,7 @@ def index() -> rx.Component:
             ),
             rx.grid(
                 rx.vstack(
-                    section_title("💡 Knockoff ideas", "need inspiration? here are some bangers."),
+                    section_title("💡 Knockoff ideas", "Need inspiration? Here are some bangers."),
                     rx.flex(
                         example_chip("Notion", "AppFlowy"),
                         example_chip("Figma", "Penpot"),
@@ -740,7 +743,7 @@ def index() -> rx.Component:
                         width="100%",
                     ),
                     rx.text(
-                        "Or pick literally anything else. If it's closed source and you can build a usable open-source alternative, it counts",
+                        "Or pick literally anything else. If it's closed source and you can build a usable open-source alternative, it counts.",
                         size="2",
                         color="gray",
                         font_style="italic",
@@ -753,7 +756,7 @@ def index() -> rx.Component:
                     rx.vstack(
                         step_item("1", "Pick your target", "Choose a closed-source app you want to knock off."),
                         step_item("2", "Build it", "You have 30 days. Track your time with Hackatime."),
-                        step_item("3", "Complete tasks", "Try to complete as many tasks as you can"),
+                        step_item("3", "Complete tasks", "Try to complete as many tasks as you can."),
                         step_item("4", "Ship it", "Deploy it somewhere. Make a README. Record a demo."),
                         step_item("5", "Submit", "Open a PR to our gallery repo with your project info."),
                         step_item("6", "Spend points", "Hit the prize shop and claim your loot."),
@@ -773,8 +776,16 @@ def index() -> rx.Component:
                 section_title("❓ FAQ", "the stuff people always ask."),
                 rx.grid(
                     faq_item(
-                        "Do I have to build the ENTIRE app?",
-                        "Nope. Build the core features that make it useful. Nobody expects you to clone all of Notion in 30 days. Focus on the key functionality.",
+                        "How close does my knockoff need to be?",
+                        "You do not need feature parity. Build the core workflow that makes the original product useful and make your version genuinely usable.",
+                    ),
+                    faq_item(
+                        "What counts as shipped?",
+                        "A public repo, a working build, setup instructions, and either a live deployment or a demo video. If nobody else can run or understand it, it is not shipped yet.",
+                    ),
+                    faq_item(
+                        "What makes a project original enough?",
+                        "Using libraries and frameworks is fine. Forking an existing open-source alternative and lightly reskinning it is not. The core build work needs to be yours.",
                     ),
                     faq_item(
                         "Can I use existing open-source libraries?",
@@ -789,24 +800,20 @@ def index() -> rx.Component:
                         "We use Hackatime and Lapse. Install the plugin, link your account, and just code. We'll see the hours automatically.",
                     ),
                     faq_item(
+                        "Can I use AI?",
+                        "Yes. AI is allowed as a tool. You still need to understand what you ship, make it work, and open-source a real project instead of pasting together something you cannot explain.",
+                    ),
+                    faq_item(
+                        "How do bonus tasks work?",
+                        "Tasks and quick-time events are bonus layers on top of coding time. Total bonus points are capped at 30% of your coding points, so the main path is still shipping code.",
+                    ),
+                    faq_item(
                         "Can I work in a team?",
-                        "Solo only for now. This is about YOUR skills and YOUR shipped project. But you can totally ask for help in the Slack!",
+                        "Solo only for now. This is about your build and your shipped project. Asking for feedback, testing help, or design input is fine.",
                     ),
                     faq_item(
-                        "How many projects can I make?",
-                        "There isn't a limit to the number of projects, but don't make slop.",
-                    ),
-                    faq_item(
-                        "How much time do I have?",
-                        "This YSWS is currently set to run from June 22 to July 17th, but an extension is possible",
-                    ),
-                    faq_item(
-                        "I'm a beginner — can I still do this?",
-                        "YES. Pick a simpler target. A basic Linktree clone counts just as much as a Figma clone. Ship what you can.",
-                    ),
-                    faq_item(
-                        "I have a question, where can I contact you?",
-                        "You can always find us in #knockoff! You can also send an email to placeholder@example.com",
+                        "I am a beginner. Can I still do this?",
+                        "Yes. Pick a tighter scope. A sharp single-purpose tool beats an overambitious clone that never ships.",
                     ),
                     columns=rx.breakpoints(initial="1", lg="2"),
                     spacing="3",
