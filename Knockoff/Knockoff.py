@@ -163,7 +163,7 @@ def shop() -> rx.Component:
                     rx.vstack(
                         prize_row("Raspberry Pi bundle", "240 pts", "Self-host your knockoff on real hardware."),
                         prize_row("Mini PC", "450 pts", "A proper home server."),
-                        prize_row("Laptop grant review", "1800+ pts", "Not a standard self-serve item. Reserved for exceptional milestone projects and staff approval."),
+                        prize_row("$100 Laptop grant", "300 pts", "?"),
                         spacing="1", width="100%",
                     ),
                     spacing="3", width="100%",
@@ -392,16 +392,58 @@ def index() -> rx.Component:
                         weight="medium",
                         font_style="italic"
                     ),
-                    rx.hstack(
+                    rx.flex(
                         rx.link(
-                            rx.button("🚀 Start building", size="3", color_scheme="purple", cursor="pointer"),
+                            rx.button(
+                                "🚀 Start building",
+                                size="3",
+                                color_scheme="purple",
+                                cursor="pointer",
+                                width=rx.breakpoints(initial="100%", sm="auto"),
+                            ),
                             href="#how-to-submit",
+                            width=rx.breakpoints(initial="100%", sm="auto"),
                         ),
                         rx.link(
-                            rx.button("📖 Read rules", size="3", variant="outline", cursor="pointer"),
-                            href="#rules",
+                            rx.button(
+                                "📝 RSVP",
+                                size="3",
+                                color_scheme="purple",
+                                variant="soft",
+                                cursor="pointer",
+                                width=rx.breakpoints(initial="100%", sm="auto"),
+                            ),
+                            href="https://forms.fillout.com/t/d3C2qeMFWius",
+                            is_external=True,
+                            width=rx.breakpoints(initial="100%", sm="auto"),
                         ),
+                        rx.link(
+                            rx.button(
+                                "💬 Join Slack",
+                                size="3",
+                                variant="outline",
+                                color_scheme="purple",
+                                cursor="pointer",
+                                width=rx.breakpoints(initial="100%", sm="auto"),
+                            ),
+                            href="https://hackclub.com/slack",
+                            is_external=True,
+                            width=rx.breakpoints(initial="100%", sm="auto"),
+                        ),
+                        rx.link(
+                            rx.button(
+                                "📖 Read rules",
+                                size="3",
+                                variant="outline",
+                                cursor="pointer",
+                                width=rx.breakpoints(initial="100%", sm="auto"),
+                            ),
+                            href="#rules",
+                            width=rx.breakpoints(initial="100%", sm="auto"),
+                        ),
+                        wrap="wrap",
                         spacing="3",
+                        width="100%",
                     ),
                     rx.text("a Hack Club YSWS", size="2", color="gray"),
                     spacing="4",
