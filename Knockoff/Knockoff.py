@@ -105,7 +105,7 @@ def shop() -> rx.Component:
             rx.vstack(
                 rx.heading("🛒 Prize Shop", size="9", weight="bold"),
                 rx.text(
-                    "Earn points by coding and completing tasks. Spend them here.",
+                    "Earn points by coding and completing tasks. Shop pricing targets about 3 points per $1 of landed cost.",
                     size="4",
                     color="gray"
                 ),
@@ -113,13 +113,27 @@ def shop() -> rx.Component:
                 align="start",
                 width="100%"
             ),
+            rx.box(
+                rx.text(
+                    "We price from the real cost to ship each reward: item + shipping + tax + fees. "
+                    "Cheap rewards should be reachable early; bigger hardware takes real time.",
+                    size="2",
+                    color="gray",
+                    line_height="1.6",
+                ),
+                padding="18px",
+                border="1.5px solid var(--gray-5)",
+                border_radius="14px",
+                background="var(--gray-2)",
+                width="100%",
+            ),
             rx.grid(
                 rx.vstack(
                     rx.text("🎨 Swag & Stickers", weight="bold", size="5"),
                     rx.vstack(
-                        prize_row("Knockoff Sticker Pack", "25 pts", "Custom-made Knockoff stickers + random Hack Club classics."),
-                        prize_row("Custom Knockoff T-Shirt", "100 pts", "A shirt only for certified shippers."),
-                        prize_row("Hoodie", "250 pts", "For late-night coding sessions."),
+                        prize_row("Knockoff Sticker Pack", "30 pts", "Custom-made Knockoff stickers + random Hack Club classics."),
+                        prize_row("Custom Knockoff T-Shirt", "105 pts", "A shirt only for certified shippers."),
+                        prize_row("Hoodie", "165 pts", "For late-night coding sessions."),
                         spacing="1", width="100%",
                     ),
                     spacing="3", width="100%",
@@ -127,9 +141,9 @@ def shop() -> rx.Component:
                 rx.vstack(
                     rx.text("🌐 Domains & Hosting", weight="bold", size="5"),
                     rx.vstack(
-                        prize_row("Domain name", "50 pts", "A .com, .dev, or .org for your project."),
+                        prize_row("Domain name", "30 pts", "A standard project domain for your knockoff."),
                         prize_row("Hosting credits", "75 pts", "Cloud credits to keep your knockoff running."),
-                        prize_row("Domain + hosting bundle", "100 pts", "Both of the above, discounted."),
+                        prize_row("Domain + hosting bundle", "105 pts", "A domain plus starter hosting credit."),
                         spacing="1", width="100%",
                     ),
                     spacing="3", width="100%",
@@ -137,9 +151,9 @@ def shop() -> rx.Component:
                 rx.vstack(
                     rx.text("🔧 Dev Tools & Subscriptions", weight="bold", size="5"),
                     rx.vstack(
-                        prize_row("IDE subscription", "150 pts", "JetBrains, etc."),
-                        prize_row("AI coding tools", "100 pts", "Copilot, Cursor, or similar."),
-                        prize_row("Dev tools bundle", "200 pts", "IDE + AI combo."),
+                        prize_row("IDE subscription", "90 pts", "One month of JetBrains or a similar paid editor tool."),
+                        prize_row("AI coding tools", "60 pts", "One month of Copilot, Cursor, or similar."),
+                        prize_row("Dev tools bundle", "150 pts", "IDE + AI combo."),
                         spacing="1", width="100%",
                     ),
                     spacing="3", width="100%",
@@ -147,9 +161,9 @@ def shop() -> rx.Component:
                 rx.vstack(
                     rx.text("🖥️ Hardware", weight="bold", size="5"),
                     rx.vstack(
-                        prize_row("Raspberry Pi", "350 pts", "Self-host your knockoff on real hardware."),
-                        prize_row("Mini PC", "750 pts", "A proper home server."),
-                        prize_row("Laptop grant", "2500 pts", "The big one. Ship hard, earn big."),
+                        prize_row("Raspberry Pi bundle", "240 pts", "Self-host your knockoff on real hardware."),
+                        prize_row("Mini PC", "450 pts", "A proper home server."),
+                        prize_row("Laptop grant review", "1800+ pts", "Not a standard self-serve item. Reserved for exceptional milestone projects and staff approval."),
                         spacing="1", width="100%",
                     ),
                     spacing="3", width="100%",
@@ -160,7 +174,7 @@ def shop() -> rx.Component:
             ),
             rx.box(
                 rx.text(
-                    "Point values and availability may change. More items coming soon.",
+                    "Point values and availability may change. High-cost hardware may be limited or require manual approval.",
                     size="2", color="gray", font_style="italic",
                 ),
                 padding_top="12px",
@@ -228,7 +242,7 @@ def tasks() -> rx.Component:
             rx.vstack(
                 rx.heading("🎯 Tasks & Points", size="9", weight="bold"),
                 rx.text(
-                    "Everything that earns you points. Code, complete tasks, catch quick-time events.",
+                    "Everything that earns you points. Coding is the base rate; tasks and quick-time events are bonus layers.",
                     size="4", color="gray",
                 ),
                 spacing="2",
@@ -243,7 +257,7 @@ def tasks() -> rx.Component:
                             rx.text("10 points per hour of coding", weight="bold", size="4"),
                             rx.text(
                                 "Tracked automatically via Hackatime. Install the plugin, link your account, and just code. "
-                                "Hours are counted from the moment you start your project.",
+                                "Hours are counted from the moment you start your project. Most of your points should come from here.",
                                 color="gray", size="2", line_height="1.6",
                             ),
                             spacing="2",
@@ -263,17 +277,17 @@ def tasks() -> rx.Component:
                         rx.vstack(
                             rx.text(
                                 "Random challenges that drop without warning. They're available for a limited time only. "
-                                "Catch them in the Slack or on the dashboard for instant bonus points.",
+                                "Catch them in the Slack or on the dashboard for a small burst of bonus points.",
                                 color="gray", size="2", line_height="1.6",
                             ),
                             rx.text("Examples of past QTEs:", weight="bold", size="2", padding_top="8px"),
                             rx.flex(
-                                qte_chip("Add a config file", "+10 pts"),
-                                qte_chip("Write one test", "+15 pts"),
-                                qte_chip("Add a /health endpoint", "+10 pts"),
-                                qte_chip("Make it work offline", "+25 pts"),
-                                qte_chip("Add dark mode", "+10 pts"),
-                                qte_chip("Shrink your Docker image", "+20 pts"),
+                                qte_chip("Add a config file", "+5 pts"),
+                                qte_chip("Write one test", "+10 pts"),
+                                qte_chip("Add a /health endpoint", "+5 pts"),
+                                qte_chip("Make it work offline", "+15 pts"),
+                                qte_chip("Add dark mode", "+5 pts"),
+                                qte_chip("Shrink your Docker image", "+10 pts"),
                                 wrap="wrap",
                                 spacing="2",
                                 width="100%",
@@ -295,14 +309,21 @@ def tasks() -> rx.Component:
             ),
             rx.vstack(
                 rx.text("📋 Bonus Tasks", weight="bold", size="5"),
+                rx.text(
+                    "Tasks are meant to add roughly 25% on top of coding time overall. They reward polish and distribution, but they should not beat just shipping code.",
+                    size="2",
+                    color="gray",
+                    line_height="1.6",
+                    width="100%",
+                ),
                 rx.grid(
-                    task_row("Write real documentation", "+25 pts", "A proper README with setup instructions, screenshots, and usage guide."),
-                    task_row("Add Docker / one-click deploy", "+50 pts", "Dockerfile or docker-compose that actually works out of the box."),
-                    task_row("Get 5+ GitHub stars", "+50 pts", "Convince real people your project is worth starring."),
-                    task_row("Record a demo video", "+25 pts", "2-minute walkthrough showing your knockoff in action."),
-                    task_row("Get someone else to self-host it", "+75 pts", "Another person follows your docs and gets it running. Proof required."),
-                    task_row("Add CI/CD pipeline", "+50 pts", "GitHub Actions, GitLab CI, whatever — automated tests and/or deploys."),
-                    task_row("Write a blog post about it", "+50 pts", "Explain what you built, why, and what you learned."),
+                    task_row("Write real documentation", "+15 pts", "A proper README with setup instructions, screenshots, and usage guide."),
+                    task_row("Add Docker / one-click deploy", "+20 pts", "Dockerfile or docker-compose that actually works out of the box."),
+                    task_row("Get 5+ GitHub stars", "+15 pts", "Convince real people your project is worth starring."),
+                    task_row("Record a demo video", "+10 pts", "2-minute walkthrough showing your knockoff in action."),
+                    task_row("Get someone else to self-host it", "+25 pts", "Another person follows your docs and gets it running. Proof required."),
+                    task_row("Add CI/CD pipeline", "+20 pts", "GitHub Actions, GitLab CI, whatever - automated tests and/or deploys."),
+                    task_row("Write a blog post about it", "+15 pts", "Explain what you built, why, and what you learned."),
                     columns=rx.breakpoints(initial="1", lg="2"),
                     spacing="1",
                     width="100%",
@@ -402,7 +423,7 @@ def index() -> rx.Component:
                         rx.text(
                             "Knockoff is a ",
                             rx.text.strong("You Ship, We Ship"),
-                            " program. You build something cool -> we give you cool stuff. "
+                            " program. You build something cool → we give you cool stuff. "
                             "Specifically: pick any closed-source product (Notion, Figma, Discord, whatever). ",
                             "Build a legit open-source alternative that people can actually use and self-host "
                             "and earn points you can spend in our prize shop.",
@@ -445,7 +466,7 @@ def index() -> rx.Component:
                                 rx.vstack(
                                     rx.text("10 points per hour of coding", weight="bold", size="4"),
                                     rx.text(
-                                        "Tracked via Hackatime and Lapse. Just code — we'll count the time.",
+                                        "Tracked via Hackatime and Lapse. Just code - we'll count the time. This is the main source of points.",
                                         color="gray", size="2",
                                     ),
                                     spacing="1",
@@ -461,7 +482,7 @@ def index() -> rx.Component:
                                 rx.vstack(
                                     rx.text("Bonus tasks", weight="bold", size="4"),
                                     rx.text(
-                                        "Earn extra points for things like writing docs, adding Docker support, getting GitHub stars, and more.",
+                                        "Earn extra points for things like writing docs, adding Docker support, and getting your project used.",
                                         color="gray", size="2",
                                     ),
                                     spacing="1",
@@ -477,7 +498,7 @@ def index() -> rx.Component:
                                 rx.vstack(
                                     rx.text("Quick-time events", weight="bold", size="4"),
                                     rx.text(
-                                        "Random pop-up challenges — like \"add a config file\" or \"write a test\" — for instant bonus points. Stay ready and watch #knockoff closely!",
+                                        "Random pop-up challenges like \"add a config file\" or \"write a test\" for a fast points bump. Stay ready and watch #knockoff closely!",
                                         color="gray", size="2",
                                     ),
                                     spacing="1",
@@ -613,8 +634,16 @@ def index() -> rx.Component:
                         "There isn't a limit to the number of projects, but don't make slop.",
                     ),
                     faq_item(
+                        "How much time do I have?",
+                        "This YSWS is currently set to run from June 22 to July 17th, but an extension is possible",
+                    ),
+                    faq_item(
                         "I'm a beginner — can I still do this?",
                         "YES. Pick a simpler target. A basic Linktree clone counts just as much as a Figma clone. Ship what you can.",
+                    ),
+                    faq_item(
+                        "I have a question, where can I contact you?",
+                        "You can always find us in #knockoff! You can also send an email to placeholder@example.com",
                     ),
                     columns=rx.breakpoints(initial="1", lg="2"),
                     spacing="3",
