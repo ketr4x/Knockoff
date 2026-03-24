@@ -179,20 +179,6 @@ def shop() -> rx.Component:
                 align="start",
                 width="100%"
             ),
-            rx.box(
-                rx.text(
-                    "We price from the real cost to ship each reward: item + shipping + tax + fees. "
-                    "Cheap rewards should be reachable early; bigger hardware takes real time.",
-                    size="2",
-                    color="gray",
-                    line_height="1.6",
-                ),
-                padding="18px",
-                border="1.5px solid var(--gray-5)",
-                border_radius="14px",
-                background="var(--gray-2)",
-                width="100%",
-            ),
             rx.grid(
                 shop_section_card(
                     "🎨",
@@ -407,9 +393,8 @@ def tasks() -> rx.Component:
             rx.vstack(
                 rx.text("📋 Bonus Tasks", weight="bold", size="5"),
                 rx.text(
-                    "Tasks are meant to add roughly 25% on top of coding time overall. "
-                    "They reward polish and distribution, but they should not beat just shipping code. "
-                    "Task points are capped at 30% of your coding points.",
+                    "Task points are capped at 30% of your coding points. "
+                    "They reward polish and distribution, but they should not beat just shipping code. ",
                     size="2",
                     color="gray",
                     line_height="1.6",
@@ -801,7 +786,7 @@ def index() -> rx.Component:
                     ),
                     faq_item(
                         "Can I use AI?",
-                        "Yes. AI is allowed as a tool. You still need to understand what you ship, make it work, and open-source a real project instead of pasting together something you cannot explain.",
+                        "Yes. AI is allowed as a tool. You still need to understand what you ship, make it work, and open-source a real project instead of pasting together something you cannot explain. Fully vibe-coded projects will be rejected.",
                     ),
                     faq_item(
                         "How do bonus tasks work?",
