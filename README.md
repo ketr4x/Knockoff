@@ -21,5 +21,5 @@ uv sync
 uv run reflex run
 ```
 
-## Status
-This repository currently contains the landing site for the Knockoff YSWS. Shop system will be added when needed.
+## AI Usage
+AI was used to help with code writing and to provide general guidance.
